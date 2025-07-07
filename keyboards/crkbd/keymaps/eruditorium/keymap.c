@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        _______, KC_CAPS, KC_HOME,   KC_UP, KC_PGUP, KC_LCBR,                      KC_RCBR,    KC_7,    KC_8,    KC_9, KC_PPLS, SELWORD,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,    KC_A, KC_LEFT, KC_DOWN, KC_RGHT, KC_LBRC,                      KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
+       SELWBAK,  KC_NUM, KC_LEFT, KC_DOWN, KC_RGHT, KC_LBRC,                      KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        _______, XXXXXXX,  KC_END, C(KC_S), KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -125,14 +125,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       │ a d j u s t                                     │
       └─────────────────────────────────────────────────┘
        */
-    [_ADJUST] =
-        LAYOUT_split_3x6_3(
-            QK_BOOT, RGB_TOG, RGB_MOD, RGB_VAI, RGB_VAD, KC_PSCR, RGB_HUI,
-            KC_F7, KC_F8, KC_F9, KC_F12, RGB_SAI, DB_TOGG, XXXXXXX, XXXXXXX,
-            KC_MSTP, KC_MNXT, KC_VOLU, RGB_HUD, KC_F4, KC_F5, KC_F6, KC_F11,
-            RGB_SAD, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPLY, KC_MPRV, KC_VOLD,
-            XXXXXXX, KC_F1, KC_F2, KC_F3, KC_F10, _______, _______, _______,
-            _______, _______, _______, _______)};
+    [_ADJUST] = LAYOUT_split_3x6_3(
+    //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       QK_BOOT,  RGB_TOG, RGB_MOD, RGB_VAI, RGB_SAI, KC_PSCR,                      KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       SELWBAK,  XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, XXXXXXX,                      KC_VOLD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+    //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                           _______,  _______, _______,    _______, _______, _______
+                                        //`--------------------------'  `--------------------------'
+
 /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #include "features/tapping_term.c"
 /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸*/
