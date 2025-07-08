@@ -24,10 +24,10 @@
 // #define QWERTY DF(_QWERTY)
 
 
-#define KC_AE RALT(KC_A)
+#define KC_AE RALT(KC_Q)
 #define KC_SS RALT(KC_S)
-#define KC_UE RALT(KC_U)
-#define KC_OE RALT(KC_O)
+#define KC_UE RALT(KC_Y)
+#define KC_OE RALT(KC_P)
 #define MUE RALT(KC_M)
-#define EURO RALT(KC_E)
+#define EURO RALT(KC_N5)
 #define CELSIUS RALT(LSFT(KC_SCLN))
