@@ -27,3 +27,6 @@
 #define MUE RALT(KC_M)
 #define EURO RALT(KC_5)
 #define CELSIUS RALT(LSFT(KC_SCLN))
+
+#define WORDDEL LCTL(KC_DEL)
+#defien WRDBSPC LCTL(KC_BSPC)

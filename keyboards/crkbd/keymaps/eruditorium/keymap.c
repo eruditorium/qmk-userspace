@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        _______, XXXXXXX,  KC_END, C(KC_S), KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_BSPC,   LOWER,  KC_ENTER,   KC_SPACE, ADJUST,    KC_0
+                                          WRDBSPC,   _______,  _______,   _______, ADJUST,    KC_0
                                         //`--------------------------'  `--------------------------'
   ),
 
@@ -114,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        SELWBAK,   KC_AE,   KC_SS, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BSLS, XXXXXXX,    EURO,     MUE, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                           KC_BSPC,  ADJUST, KC_ENTER,   KC_SPACE,_______, _______
+                                           WRDBSPC,  ADJUST, _______,   _______,_______, WRDDEL
                                         //`--------------------------'  `--------------------------'
   ),
     /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -127,11 +127,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        */
     [_ADJUST] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       QK_BOOT,  RGB_TOG, RGB_MOD, RGB_VAI, RGB_SAI, KC_PSCR,                      KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  
+       QK_BOOT,  RGB_TOG, RGB_MOD, RGB_VAI, RGB_SAI, KC_PSCR,                      KC_VOLU,   KC_F7,   KC_F8,   KC_F9,  KC_F12, XXXXXXX,  
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,  XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, XXXXXXX,                      KC_VOLD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+       SELWBAK,  XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, XXXXXXX,                      KC_VOLD,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MUTE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MUTE,   KC_F1,   KC_F2,   KC_F3,  KC_F10, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            _______,  _______, _______,    _______, _______, _______
                                         //`--------------------------'  `--------------------------'
