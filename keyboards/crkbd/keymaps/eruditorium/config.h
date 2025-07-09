@@ -100,11 +100,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // configure the amount of keys a combo can be composed of
 #define EXTRA_SHORT_COMBOS
-
-// lumino
-// https://getreuer.info/posts/keyboards/lumino/index.html
-#define LUMINO_HIGH_BRIGHTNESS  0.8
-#define LUMINO_LOW_BRIGHTNESS   0.1
-#define LUMINO_LONG_TIMEOUT  1000 * 60 * 5  // = 5 minutes.
-#define LUMINO_SOON_TIMEOUT  1000 * 12      // = 12 seconds.
-#define LUMINO_TRANSITION    750            // = 750 ms.
