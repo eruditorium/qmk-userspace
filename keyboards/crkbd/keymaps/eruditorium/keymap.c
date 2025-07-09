@@ -160,7 +160,7 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
 /* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 // Helper for implementing tap vs. long-press keys. Given a tap-hold
 // key event, replaces the hold function with `long_press_keycode`.
-static bool process_tap_or_long_press_key(
+/*static bool process_tap_or_long_press_key(
     keyrecord_t* record, uint16_t long_press_keycode) {
   if (record->tap.count == 0) {  // Key is being held.
     if (record->event.pressed) {
@@ -169,7 +169,7 @@ static bool process_tap_or_long_press_key(
     return false;  // Skip default handling.
   }
   return true;  // Continue default handling.
-}
+}*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
