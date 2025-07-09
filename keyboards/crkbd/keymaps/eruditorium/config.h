@@ -128,21 +128,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #  undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 #endif  // RGB_MATRIX_ENABLE
 
-#undef OLED_FONT_H
-#undef OLED_FONT_WIDTH
-#undef OLED_FONT_HEIGHT
-#undef OLED_FONT_END
+//#undef OLED_FONT_H
+//#undef OLED_FONT_WIDTH
+//#undef OLED_FONT_HEIGHT
+//#undef OLED_FONT_END
 
-#define OLED_FONT_H "features/glcdfont.c"
-#define OLED_FONT_WIDTH 8
-#define OLED_FONT_HEIGHT 8
+//#define OLED_FONT_H "features/glcdfont.c"
+//#define OLED_FONT_WIDTH 8
+//#define OLED_FONT_HEIGHT 8
 //#define OLED_FONT_START 65  // 'A'
 //#define OLED_FONT_END   87  // 'W'
 //#define OLED_FONT_WIDTH 8   // 8x8
-#define OLED_FONT_END 0x9F
+//#define OLED_FONT_END 0x9F
 
-#define OLED_DISABLE_TIMEOUT
-#define OLED_DISABLE_SCROLL
+//#define OLED_DISABLE_TIMEOUT
+//#define OLED_DISABLE_SCROLL
 
 // Add these flags to your rules.mk file:
 // This enables Link Time Optimization, saving a significant amount of space.
