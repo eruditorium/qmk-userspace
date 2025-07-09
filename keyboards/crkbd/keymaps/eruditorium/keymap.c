@@ -50,8 +50,6 @@ enum custom_keycodes {
   ADJUST,
   SNAP,
   MC_QUOT,
-  UPDIR, 
-  JOINLN,
 };
 
 #include "features/macro.c"
@@ -78,11 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
     [_QWERTY] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       QK_GESC,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  SELLINE,
+       QK_GESC,   KC_Q,    KC_W,    KC_E,     KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  SELLINE,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWORD,   KC_A,    KC_S,    KC_D,    SHT_F,   KC_G,                         KC_H,    SHT_J,   KC_K,    KC_L, KC_SCLN, KC_QUOT,
+       SELWORD,   KC_A,    KC_S,    KC_D,    SHT_F,    KC_G,                         KC_H,    SHT_J,   KC_K,    KC_L, KC_SCLN, KC_QUOT,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_LCTL,   CTL_Z,  GUI_X,    ALT_C,    KC_V,   KC_B,                         KC_N,    KC_M, ALT_COMM,GUI_DOT,CTL_SLSH, KC_LSFT,
+       KC_LCTL,   CTL_Z,  GUI_X,    ALT_C,    KC_V,    KC_B,                         KC_N,    KC_M, ALT_COMM,GUI_DOT,CTL_SLSH, KC_LSFT,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_BSPC,   LOWER,  KC_ENTER,   KC_SPACE, RAISE, ALT_DEL
                                         //`--------------------------'  `--------------------------'
@@ -99,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        SELWBAK,  KC_NUM, KC_LEFT, KC_DOWN, KC_RIGHT, KC_LBRC,                    KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______, UPDIR,  KC_END, JOINLN, KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
+       _______, XXXXXXX,  KC_END, XXXXXXX, KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           WRDBSPC,   _______,  _______,   _______, ADJUST,    KC_0
                                         //`--------------------------'  `--------------------------'
@@ -114,9 +112,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TILD, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC,   KC_UE, KC_AMPR,   KC_OE, CELSIUS,  KC_DEL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,   KC_AE,   KC_SS, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BSLS, XXXXXXX,    EURO,     MUE, XXXXXXX, XXXXXXX,
+       SELWBAK,   KC_AE,   KC_SS, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BSLS,  XXXXXXX,    EURO,     MUE, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______,   UPDIR,  JOINLN, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                     KC_PIPE,  KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            WRDBSPC,  ADJUST, _______,   _______,_______, WORDDEL
                                         //`--------------------------'  `--------------------------'
@@ -158,30 +156,3 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     return get_chordal_hold_default(tap_hold_record, other_record);
 }
 /* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-  switch (keycode) {
-    case UPDIR:  // Types ../ to go up a directory on the shell.
-      if (record->event.pressed) {
-        SEND_STRING("../");
-      }
-      return false;
-    case JOINLN:  // Join lines like Vim's `J` command. 
-      if (record->event.pressed) {
-        SEND_STRING( // Go to the end of the line and tap delete.
-            SS_TAP(X_END) SS_TAP(X_DEL)
-            // In case this has joined two words together, insert one space.
-            SS_TAP(X_SPC)
-            SS_LCTL(
-              // Go to the beginning of the next word.
-              SS_TAP(X_RGHT) SS_TAP(X_LEFT)
-              // Select back to the end of the previous word. This should select
-              // all spaces and tabs between the joined lines from indentation
-              // or trailing whitespace, including the space inserted earlier.
-              SS_LSFT(SS_TAP(X_LEFT) SS_TAP(X_RGHT)))
-            // Replace the selection with a single space.
-            SS_TAP(X_SPC));
-      }
-      return false;
-  }
-  return true;
-}
