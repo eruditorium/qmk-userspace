@@ -142,22 +142,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸*/
 #include "features/oled.c"
 /* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-  // Exceptionally consider the following chords as holds, even though they
-  // are on the same hand in Dvorak.
-  switch (tap_hold_keycode) {
-    case SHT_F:  // F + Enter.
-      if (other_keycode == KC_ENTER) { return true; }
-      break;
-  }
-
-  // Also allow same-hand holds when the other key is in the rows below the
-  // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
-
-  // Otherwise, follow the opposite hands rule.
-  return achordion_opposite_hands(tap_hold_record, other_record);
+bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
+                      uint16_t other_keycode, keyrecord_t* other_record) {
+    // Exceptionally allow some one-handed chords for hotkeys.
+    switch (tap_hold_keycode) {
+        case SHT_F:
+            if (other_keycode == KC_ENTER) {
+                return true;
+            }
+            break;
+    }
+    // Otherwise defer to the opposite hands rule.
+    return get_chordal_hold_default(tap_hold_record, other_record);
 }
