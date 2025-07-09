@@ -127,11 +127,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        */
     [_ADJUST] = LAYOUT_split_3x6_3(
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       QK_BOOT,  RGB_TOG, RGB_MOD, RGB_VAI, RGB_SAI, KC_PSCR,                      KC_VOLU,   KC_F7,   KC_F8,   KC_F9,  KC_F12, XXXXXXX,  
+       QK_BOOT,  RGB_TOG, RM_SATU, RM_HUEU, RM_SATU, RM_NEXT,                      KC_VOLU,   KC_F7,   KC_F8,   KC_F9,  KC_F12, XXXXXXX,  
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,   LUMINO, XXXXXXX, RGB_VAD, RGB_SAD, XXXXXXX,                      KC_VOLD,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX,
+       SELWBAK,   LUMINO, RM_SATD, RM_HUED, RM_SATD, RM_PREV,                      KC_VOLD,   KC_F4,   KC_F5,   KC_F6,  KC_F11, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MUTE,   KC_F1,   KC_F2,   KC_F3,  KC_F10, _______,
+       _______,  RM_VALU, RM_VALD, RM_SPDU, RM_SPDD, XXXXXXX,                      KC_MUTE,   KC_F1,   KC_F2,   KC_F3,  KC_F10, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            _______,  _______, _______,    _______, _______, _______
                                         //`--------------------------'  `--------------------------'
