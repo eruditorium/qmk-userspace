@@ -49,7 +49,13 @@ enum custom_keycodes {
   RAISE,
   ADJUST,
   SNAP,
-  MC_QUOT
+  MC_QUOT,
+  UPDIR, 
+  JOINLN,
+  LFT_HOME,
+  RGHT_END,
+  UP_PGUP,
+  DN_PGDN
 };
 
 #include "features/macro.c"
@@ -95,9 +101,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        _______, KC_CAPS, KC_HOME,   KC_UP, KC_PGUP, KC_LCBR,                      KC_RCBR,    KC_7,    KC_8,    KC_9, KC_PPLS, SELWORD,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,  KC_NUM, KC_LEFT, KC_DOWN, KC_RGHT, KC_LBRC,                      KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
+       SELWBAK,  KC_NUM, LFT_HOME, KC_DOWN, RGHT_END, KC_LBRC,                    KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______, XXXXXXX,  KC_END, C(KC_S), KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
+       _______, UPDIR,  KC_END, JOINLN, KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           WRDBSPC,   _______,  _______,   _______, ADJUST,    KC_0
                                         //`--------------------------'  `--------------------------'
@@ -114,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        SELWBAK,   KC_AE,   KC_SS, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BSLS, XXXXXXX,    EURO,     MUE, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______, XXXXXXX, JOINLN, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            WRDBSPC,  ADJUST, _______,   _______,_______, WORDDEL
                                         //`--------------------------'  `--------------------------'
@@ -140,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 #include "features/tapping_term.c"
 /*╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸*/
-#include "features/oled.c"
+//#include "features/oled.c"
 /* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
                       uint16_t other_keycode, keyrecord_t* other_record) {
@@ -154,4 +160,66 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     }
     // Otherwise defer to the opposite hands rule.
     return get_chordal_hold_default(tap_hold_record, other_record);
+}
+/* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+// Helper for implementing tap vs. long-press keys. Given a tap-hold
+// key event, replaces the hold function with `long_press_keycode`.
+static bool process_tap_or_long_press_key(
+    keyrecord_t* record, uint16_t long_press_keycode) {
+  if (record->tap.count == 0) {  // Key is being held.
+    if (record->event.pressed) {
+      tap_code16(long_press_keycode);
+    }
+    return false;  // Skip default handling.
+  }
+  return true;  // Continue default handling.
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case UPDIR:  // Types ../ to go up a directory on the shell.
+      if (record->event.pressed) {
+        SEND_STRING("../");
+      }
+      return false;
+    case JOINLN:  // Join lines like Vim's `J` command. 
+      if (record->event.pressed) {
+        SEND_STRING( // Go to the end of the line and tap delete.
+            SS_TAP(X_END) SS_TAP(X_DEL)
+            // In case this has joined two words together, insert one space.
+            SS_TAP(X_SPC)
+            SS_LCTL(
+              // Go to the beginning of the next word.
+              SS_TAP(X_RGHT) SS_TAP(X_LEFT)
+              // Select back to the end of the previous word. This should select
+              // all spaces and tabs between the joined lines from indentation
+              // or trailing whitespace, including the space inserted earlier.
+              SS_LSFT(SS_TAP(X_LEFT) SS_TAP(X_RGHT)))
+            // Replace the selection with a single space.
+            SS_TAP(X_SPC));
+      }
+      return false;
+    case COMM_COPY:  // Comma on tap, Ctrl+C on long press.
+      return process_tap_or_long_press_key(record, C(KC_C));
+
+    case DOT_PASTE:  // Dot on tap, Ctrl+V on long press.
+      return process_tap_or_long_press_key(record, C(KC_V));
+
+    case LFT_HOME: // left arrow on tap, home on long press
+      return process_tap_or_long_press_key(record, KC_HOME);
+
+    case RGHT_END: // right arrow on tap, end on long press
+      return process_tap_or_long_press_key(record, KC_END);
+
+    case UP_PGUP: // up arrow on tap, page up on long press
+      return process_tap_or_long_press_key(record, KC_PGUP);
+
+    case DN_PGDN: // down on tap, page down on long press
+      return process_tap_or_long_press_key(record, KC_PGDN);
+
+    
+    
+    
+  }
+  return true;
 }
