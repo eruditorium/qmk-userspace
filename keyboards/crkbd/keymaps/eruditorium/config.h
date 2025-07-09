@@ -72,6 +72,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_VAL_STEP 17
 #endif
 
+// Enable just the Gradient and Ripple effects.
+#define PALETTEFX_GRADIENT_ENABLE
+// #define PALETTEFX_FLOW_ENABLE
+#define PALETTEFX_RIPPLE_ENABLE
+// #define PALETTEFX_SPARKLE_ENABLE
+// #define PALETTEFX_VORTEX_ENABLE
+// #define PALETTEFX_REACTIVE_ENABLE
+
+// Or enable all effects with
+// #define PALETTEFX_ENABLE_ALL_EFFECTS
+
+// Enable just the Afterburn, Not Pink, and Phosphor palettes.
+#define PALETTEFX_AFTERBURN_ENABLE
+// #define PALETTEFX_AMBER_ENABLE
+// #define PALETTEFX_BADWOLF_ENABLE
+// #define PALETTEFX_CARNIVAL_ENABLE
+// #define PALETTEFX_CLASSIC_ENABLE
+// #define PALETTEFX_DRACULA_ENABLE
+// #define PALETTEFX_GROOVY_ENABLE
+#define PALETTEFX_NOTPINK_ENABLE
+#define PALETTEFX_PHOSPHOR_ENABLE
+// #define PALETTEFX_POLARIZED_ENABLE
+// #define PALETTEFX_ROSEGOLD_ENABLE
+// #define PALETTEFX_SPORT_ENABLE
+// #define PALETTEFX_SYNTHWAVE_ENABLE
+// #define PALETTEFX_THERMAL_ENABLE
+// #define PALETTEFX_VIRIDIS_ENABLE
+// #define PALETTEFX_WATERMELON_ENABLE
+
+// Or enable all palettes with
+// #define PALETTEFX_ENABLE_ALL_PALETTES
+
 #undef OLED_FONT_H
 #undef OLED_FONT_WIDTH
 #undef OLED_FONT_HEIGHT
@@ -100,3 +132,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // configure the amount of keys a combo can be composed of
 #define EXTRA_SHORT_COMBOS
+
+// Lumino cycles among off, LUMINO_LOW_BRIGHTNESS, and LUMINO_HIGH_BRIGHTNESS.
+// The latter two are values between 0.0 (off) and 1.0 (max).
+#define LUMINO_HIGH_BRIGHTNESS  1.0  // = max.
+#define LUMINO_LOW_BRIGHTNESS   (0.4 * (LUMINO_HIGH_BRIGHTNESS))  // = 40%.
+// By default, the set brightness is saved to EEPROM. Uncomment the next line
+// to tell Lumino to never write to EEPROM.
+// #define LUMINO_NO_EEPROM
+
+// Normal idle timeout in milliseconds after which the lighting turns off. 
+#define LUMINO_LONG_TIMEOUT     120000  // = 2 minutes.
+// Fast idle timeout, used when few keystrokes were received since the last 
+// time the keyboard woke up.
+#define LUMINO_SOON_TIMEOUT     5000    // = 5 seconds.
+// Animated transition time for smoothly changing brightness levels.
+#define LUMINO_TRANSITION       500     // = 500 ms.
+
+// Lighting color set when `QK_BOOT` is pressed.
+#define LUMINO_BOOT_COLOR       RGB_RED
