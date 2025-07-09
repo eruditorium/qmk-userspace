@@ -34,27 +34,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Tap-hold configuration for home row mods.
 #define TAPPING_TERM 225
-//#define TAPPING_TERM_PER_KEY
-//#define CHORDAL_HOLD
-#define PERMISSIVE_HOLD
+#define FLOW_TAP_TERM 100
 #define CHORDAL_HOLD
+#define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM 150
-// #define QUICK_TAP_TERM_PER_KEY
-
+//#define TAPPING_TERM_PER_KEY
+//#define QUICK_TAP_TERM_PER_KEY
 
 #define COMBO_COUNT 10
 
 // Activate CAPS WORD by pressing Left Shift + Right Shift
 // https://docs.qmk.fm/#/feature_caps_word
 //#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-// Activate by double tapping Left Shift:-
-//alternative:
-//#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-
+// alternative: Activate by double tapping Left Shift:-
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 // Holding Shift while Caps Word is active inverts the shift state.
-//#define CAPS_WORD_INVERT_ON_SHIFT
+#define CAPS_WORD_INVERT_ON_SHIFT
 // When idle, turn off Caps Word after 5 seconds.
-// #define CAPS_WORD_IDLE_TIMEOUT 5000
+#define CAPS_WORD_IDLE_TIMEOUT 5000
+
+#define LUMINO_TRANSITION 850
+#define LUMINO_BOOT_COLOR RGB_WHITE
+#define LUMINO_NO_EEPROM
 
 // #undef LOCKING_SUPPORT_ENABLE
 // #undef LOCKING_RESYNC_ENABLE
@@ -72,37 +73,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_VAL_STEP 17
 #endif
 
-// Enable just the Gradient and Ripple effects.
-#define PALETTEFX_GRADIENT_ENABLE
-// #define PALETTEFX_FLOW_ENABLE
-#define PALETTEFX_RIPPLE_ENABLE
-// #define PALETTEFX_SPARKLE_ENABLE
-// #define PALETTEFX_VORTEX_ENABLE
-// #define PALETTEFX_REACTIVE_ENABLE
+#define PALETTEFX_ENABLE_ALL_EFFECTS
+#define PALETTEFX_ENABLE_ALL_PALETTES
 
-// Or enable all effects with
-// #define PALETTEFX_ENABLE_ALL_EFFECTS
+#ifdef RGB_MATRIX_ENABLE
+// Since we have PaletteFx, disable most built-in RGB Matrix effects.
+#  undef ENABLE_RGB_MATRIX_ALPHAS_MODS
+#  undef ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
+#  undef ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT
+#  undef ENABLE_RGB_MATRIX_BREATHING
+#  undef ENABLE_RGB_MATRIX_BAND_SAT
+#  undef ENABLE_RGB_MATRIX_BAND_VAL
+#  undef ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT
+#  undef ENABLE_RGB_MATRIX_BAND_PINWHEEL_VAL
+#  undef ENABLE_RGB_MATRIX_BAND_SPIRAL_SAT
+#  undef ENABLE_RGB_MATRIX_BAND_SPIRAL_VAL
+#  undef ENABLE_RGB_MATRIX_CYCLE_ALL
+#  undef ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+#  undef ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
+#  undef ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
+#  undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN
+#  undef ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
+#  undef ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
+#  undef ENABLE_RGB_MATRIX_CYCLE_SPIRAL
+#  undef ENABLE_RGB_MATRIX_DUAL_BEACON
+#  undef ENABLE_RGB_MATRIX_RAINBOW_BEACON
+#  undef ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
+#  undef ENABLE_RGB_MATRIX_FLOWER_BLOOMING
+#  undef ENABLE_RGB_MATRIX_RAINDROPS
+#  undef ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
+#  undef ENABLE_RGB_MATRIX_HUE_BREATHING
+#  undef ENABLE_RGB_MATRIX_HUE_PENDULUM
+#  undef ENABLE_RGB_MATRIX_HUE_WAVE
+#  undef ENABLE_RGB_MATRIX_PIXEL_FRACTAL
+#  undef ENABLE_RGB_MATRIX_PIXEL_FLOW
+#  undef ENABLE_RGB_MATRIX_PIXEL_RAIN
+#  undef ENABLE_RGB_MATRIX_STARLIGHT
+#  undef ENABLE_RGB_MATRIX_STARLIGHT_DUAL_SAT
+#  undef ENABLE_RGB_MATRIX_RIVERFLOW
 
-// Enable just the Afterburn, Not Pink, and Phosphor palettes.
-#define PALETTEFX_AFTERBURN_ENABLE
-// #define PALETTEFX_AMBER_ENABLE
-// #define PALETTEFX_BADWOLF_ENABLE
-// #define PALETTEFX_CARNIVAL_ENABLE
-// #define PALETTEFX_CLASSIC_ENABLE
-// #define PALETTEFX_DRACULA_ENABLE
-// #define PALETTEFX_GROOVY_ENABLE
-#define PALETTEFX_NOTPINK_ENABLE
-#define PALETTEFX_PHOSPHOR_ENABLE
-// #define PALETTEFX_POLARIZED_ENABLE
-// #define PALETTEFX_ROSEGOLD_ENABLE
-// #define PALETTEFX_SPORT_ENABLE
-// #define PALETTEFX_SYNTHWAVE_ENABLE
-// #define PALETTEFX_THERMAL_ENABLE
-// #define PALETTEFX_VIRIDIS_ENABLE
-// #define PALETTEFX_WATERMELON_ENABLE
+#  undef ENABLE_RGB_MATRIX_TYPING_HEATMAP
+#  undef ENABLE_RGB_MATRIX_DIGITAL_RAIN
 
-// Or enable all palettes with
-// #define PALETTEFX_ENABLE_ALL_PALETTES
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
+#  undef ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
+#  undef ENABLE_RGB_MATRIX_SPLASH
+#  undef ENABLE_RGB_MATRIX_MULTISPLASH
+#  undef ENABLE_RGB_MATRIX_SOLID_SPLASH
+#  undef ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
+#endif  // RGB_MATRIX_ENABLE
 
 #undef OLED_FONT_H
 #undef OLED_FONT_WIDTH
@@ -132,22 +156,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // configure the amount of keys a combo can be composed of
 #define EXTRA_SHORT_COMBOS
-
-// Lumino cycles among off, LUMINO_LOW_BRIGHTNESS, and LUMINO_HIGH_BRIGHTNESS.
-// The latter two are values between 0.0 (off) and 1.0 (max).
-#define LUMINO_HIGH_BRIGHTNESS  1.0  // = max.
-#define LUMINO_LOW_BRIGHTNESS   (0.4 * (LUMINO_HIGH_BRIGHTNESS))  // = 40%.
-// By default, the set brightness is saved to EEPROM. Uncomment the next line
-// to tell Lumino to never write to EEPROM.
-// #define LUMINO_NO_EEPROM
-
-// Normal idle timeout in milliseconds after which the lighting turns off. 
-#define LUMINO_LONG_TIMEOUT     120000  // = 2 minutes.
-// Fast idle timeout, used when few keystrokes were received since the last 
-// time the keyboard woke up.
-#define LUMINO_SOON_TIMEOUT     5000    // = 5 seconds.
-// Animated transition time for smoothly changing brightness levels.
-#define LUMINO_TRANSITION       500     // = 500 ms.
-
-// Lighting color set when `QK_BOOT` is pressed.
-#define LUMINO_BOOT_COLOR       RGB_RED
