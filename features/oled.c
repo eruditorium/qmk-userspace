@@ -544,6 +544,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     frame_timer = timer_read32();
     oled_on();
   }
+  switch (keycode) {
+    case G(KC_L):
+      // Hint Lumino to sleep soon after lock screen GUI+L key is used.
+      lumino_sleep_soon();
+      return true;  // Continue default handling.
+  }
   return true;
 }
 
