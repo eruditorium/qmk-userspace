@@ -199,12 +199,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             SS_TAP(X_SPC));
       }
       return false;
-    case COMM_COPY:  // Comma on tap, Ctrl+C on long press.
-      return process_tap_or_long_press_key(record, C(KC_C));
-
-    case DOT_PASTE:  // Dot on tap, Ctrl+V on long press.
-      return process_tap_or_long_press_key(record, C(KC_V));
-
+   
     case LFT_HOME: // left arrow on tap, home on long press
       return process_tap_or_long_press_key(record, KC_HOME);
 
