@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        SELWBAK,   KC_AE,   KC_SS, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_BSLS, XXXXXXX,    EURO,     MUE, XXXXXXX, XXXXXXX,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       _______,   UPDIR, J OINLN, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+       _______,   UPDIR,  JOINLN, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PIPE, KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            WRDBSPC,  ADJUST, _______,   _______,_______, WORDDEL
                                         //`--------------------------'  `--------------------------'
