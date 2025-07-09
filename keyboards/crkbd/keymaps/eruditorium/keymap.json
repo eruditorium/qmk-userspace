@@ -1,6 +1,7 @@
 {
   "modules": [
     "getreuer/select_word",
-    "getreuer/lumino"
+    "getreuer/lumino",
+    "getreuer/palettefx"
   ]
 }
