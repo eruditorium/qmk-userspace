@@ -158,19 +158,6 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     return get_chordal_hold_default(tap_hold_record, other_record);
 }
 /* ╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-// Helper for implementing tap vs. long-press keys. Given a tap-hold
-// key event, replaces the hold function with `long_press_keycode`.
-/*static bool process_tap_or_long_press_key(
-    keyrecord_t* record, uint16_t long_press_keycode) {
-  if (record->tap.count == 0) {  // Key is being held.
-    if (record->event.pressed) {
-      tap_code16(long_press_keycode);
-    }
-    return false;  // Skip default handling.
-  }
-  return true;  // Continue default handling.
-}*/
-
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   switch (keycode) {
     case UPDIR:  // Types ../ to go up a directory on the shell.
@@ -195,22 +182,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             SS_TAP(X_SPC));
       }
       return false;
-   
-  /*  case LFT_HOME: // left arrow on tap, home on long press
-      return process_tap_or_long_press_key(record, KC_HOME);
-
-    case RGHT_END: // right arrow on tap, end on long press
-      return process_tap_or_long_press_key(record, KC_END);
-
-    case UP_PGUP: // up arrow on tap, page up on long press
-      return process_tap_or_long_press_key(record, KC_PGUP);
-
-    case DN_PGDN: // down on tap, page down on long press
-      return process_tap_or_long_press_key(record, KC_PGDN);*/
-
-    
-    
-    
   }
   return true;
 }
