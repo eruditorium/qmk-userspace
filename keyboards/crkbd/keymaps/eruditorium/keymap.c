@@ -52,10 +52,6 @@ enum custom_keycodes {
   MC_QUOT,
   UPDIR, 
   JOINLN,
-  LFT_HOME,
-  RGHT_END,
-  UP_PGUP,
-  DN_PGDN
 };
 
 #include "features/macro.c"
@@ -101,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        _______, KC_CAPS, KC_HOME,   KC_UP, KC_PGUP, KC_LCBR,                      KC_RCBR,    KC_7,    KC_8,    KC_9, KC_PPLS, SELWORD,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       SELWBAK,  KC_NUM, LFT_HOME, KC_DOWN, RGHT_END, KC_LBRC,                    KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
+       SELWBAK,  KC_NUM, KC_LEFT, KC_DOWN, KC_RIGHT, KC_LBRC,                    KC_RBRC,    KC_4,    KC_5,    KC_6, KC_MINS,  KC_EQL,
     //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        _______, UPDIR,  KC_END, JOINLN, KC_PGDN, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3, KC_PAST, _______,
     //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -200,7 +196,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       }
       return false;
    
-    case LFT_HOME: // left arrow on tap, home on long press
+  /*  case LFT_HOME: // left arrow on tap, home on long press
       return process_tap_or_long_press_key(record, KC_HOME);
 
     case RGHT_END: // right arrow on tap, end on long press
@@ -210,7 +206,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
       return process_tap_or_long_press_key(record, KC_PGUP);
 
     case DN_PGDN: // down on tap, page down on long press
-      return process_tap_or_long_press_key(record, KC_PGDN);
+      return process_tap_or_long_press_key(record, KC_PGDN);*/
 
     
     
