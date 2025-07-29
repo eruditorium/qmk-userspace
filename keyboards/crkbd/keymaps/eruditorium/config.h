@@ -33,12 +33,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://github.com/manna-harbour/qmk_firmware/issues/29
 
 // Tap-hold configuration for home row mods.
-#define TAPPING_TERM 225
+#define TAPPING_TERM 200
 #define FLOW_TAP_TERM 100
 #define CHORDAL_HOLD
 #define PERMISSIVE_HOLD
 #define QUICK_TAP_TERM 150
-//#define TAPPING_TERM_PER_KEY
+#define TAPPING_TERM_PER_KEY
 //#define QUICK_TAP_TERM_PER_KEY
 
 #define COMBO_COUNT 10
